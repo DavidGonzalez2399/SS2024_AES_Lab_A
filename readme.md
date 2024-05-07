@@ -1,4 +1,4 @@
-# SS2024_Advanced Embedded Systems Lab_GroupA
+# SS2024_AES_Lab_TeamName
 ## Conveyor Belt with Robotic Arm 🦾🥇
 Team members:
 - David González 🤓
