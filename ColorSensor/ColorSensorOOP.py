@@ -1,15 +1,24 @@
-import colorSensorClass
-# import BlynkSetup
+import time
+
+#importing color sensor class
+from colorSensorClass import ColorSensor
+
+#importing MQTT functions
+from mqtt_send import makeConnection,publish
+
+#creating MQTT client
+client=makeConnection()
+mqttTopic = "ColorSensorReading"
+
+#initializing Color sensor
 myColorSensor = ColorSensor(0,1,2,3,4)
+
 while True:
     red= myColorSensor.measureRed()
     green = myColorSensor.measureGreen()
     blue = myColorSensor.measureBlue()
-    # print(f'blue = {blue}')
     colors=[red,green,blue]
     result=myColorSensor.decide_color(red,green,blue)
-    print(f'color is {result}')
-    # BLYNK.virtual_write(0, result)
-    # toggleBlynkLED(result)
-    time.sleep(2)
-    # BLYNK.run()
+    print([red,green,blue])
+    publish(mqttTopic,result,client)
+    time.sleep(0.5)

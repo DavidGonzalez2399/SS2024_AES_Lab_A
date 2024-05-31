@@ -1,5 +1,9 @@
-SSID = "Galaxy"
-password = "andrew2020"
-BLYNK_TEMPLATE_ID ="TMPL4J77AQTDA"
-BLYNK_TEMPLATE_NAME ="PICO W"
-BLYNK_AUTH_TOKEN ="05PfUAjPe2_PZgP0r3rDgArvLTC4jUyZ"
+#SSID= "Galaxy"
+#SSID_password = "andrew2020"
+SSID= "TP-Link_BADE"
+SSID_password = "27845899"
+
+mqttBroker = 'test.mosquitto.org'
+mqttClient = 'pico'
+mqttUser = 'mqttuser'
+mqttPW = ''
