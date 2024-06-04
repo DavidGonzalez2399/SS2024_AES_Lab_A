@@ -3,8 +3,8 @@
 #include "Arduino.h"
 #include <WiFiNINA.h>
 
-char ssid[] = "iPhone";        // your network SSID (name)
-char pass[] = "poopoopeepee";    // your network password (use for WPA, or use as key for WEP)
+char ssid[] = "Galaxy S23 Ultra 00AC";        // your network SSID (name)
+char pass[] = "Germany.4";    // your network password (use for WPA, or use as key for WEP)
 
 WiFiClient wifiClient;
 
