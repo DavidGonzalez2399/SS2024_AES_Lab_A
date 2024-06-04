@@ -27,14 +27,11 @@ void setup() {
   pinMode(PUBLISH_TO_CONVEYER_BELT_LED_PIN, OUTPUT);
   pinMode(SUBSCRIBE_TO_COLOR_SENSOR_LED_PIN, OUTPUT);
   
-  connectToWifi("Galaxy S23 Ultra 00AC", "Germany.4");
+  connectToWifi();
 
-  connectToMQTTBroker("192.168.162.44", 1883);
+  connectToMQTTBroker();
 
   digitalWrite(LED_BUILTIN, HIGH);
-
-  // set the message receive callback
-  mqttClient.onMessage(onMqttMessage);
 
   subscribeToTopic("ColorSensorReading");
 
@@ -47,9 +44,9 @@ void loop() {
 
     digitalWrite(LED_BUILTIN, LOW);
 
-    connectToWifi("Galaxy S23 Ultra 00AC", "Germany.4");
+    connectToWifi();
 
-    connectToMQTTBroker("192.168.162.44", 1883);
+    connectToMQTTBroker();
 
   } else {
 
