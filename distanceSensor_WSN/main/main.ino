@@ -31,6 +31,11 @@ void setup() {
 
   connectToMQTTBroker("192.168.162.44", 1883);
 
+  digitalWrite(LED_BUILTIN, HIGH);
+
+  // set the message receive callback
+  mqttClient.onMessage(onMqttMessage);
+
   subscribeToTopic("ColorSensorReading");
 
 }
@@ -52,12 +57,12 @@ void loop() {
 
     unsigned long currentMillis = millis();
   
-    if(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS) && currentMillis - previousMillis >= interval){
+    if(currentMillis - previousMillis >= interval){
 
       // save the last time a message was sent
       previousMillis = currentMillis;
 
-      publishMessage("1", "BoxDetection");
+      publishMessage(String(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS)), "BoxDetection");
       
     }
 
