@@ -31,11 +31,6 @@ void setup() {
 
   connectToMQTTBroker("192.168.162.44", 1883);
 
-  digitalWrite(LED_BUILTIN, HIGH);
-
-  // set the message receive callback
-  mqttClient.onMessage(onMqttMessage);
-
   subscribeToTopic("ColorSensorReading");
 
 }
