@@ -4,9 +4,12 @@
 #include "Arduino.h"
 #include <ArduinoMqttClient.h>
 
+char broker[] = "192.168.162.44";
+int port = 1883;
+
 MqttClient mqttClient(wifiClient);
 
-void connectToMQTTBroker(String broker, int port){
+void connectToMQTTBroker(){
 
   if (!mqttClient.connect(broker, port)) {
     while (1);
@@ -54,7 +57,7 @@ void onMqttMessage(int messageSize) {
 }
 
 void subscribeToTopic(String subscribingTopic){
-  
+
   // set the message receive callback
   mqttClient.onMessage(onMqttMessage);
 
@@ -70,7 +73,5 @@ void subscribeToTopic(String subscribingTopic){
   Serial.println();
 
 }
-
-
 
 #endif
