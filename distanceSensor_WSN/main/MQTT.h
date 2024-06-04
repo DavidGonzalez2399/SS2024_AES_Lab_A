@@ -34,21 +34,6 @@ void publishMessage(String message, String topic){
 
 }
 
-void subscribeToTopic(String subscribingTopic){
-
-  Serial.print("Subscribing to topic: ");
-  Serial.println(subscribingTopic);
-  Serial.println();
-
-  // subscribe to a topic
-  mqttClient.subscribe(subscribingTopic);
-
-  Serial.println("Subscribed to topic: \n");
-  Serial.println(subscribingTopic);
-  Serial.println();
-
-}
-
 void onMqttMessage(int messageSize) {
   // we received a message, print out the topic and contents
   Serial.println("Received a message with topic '");
@@ -67,5 +52,25 @@ void onMqttMessage(int messageSize) {
   publishMessage("0", "BoxDetection");
 
 }
+
+void subscribeToTopic(String subscribingTopic){
+  
+  // set the message receive callback
+  mqttClient.onMessage(onMqttMessage);
+
+  Serial.print("Subscribing to topic: ");
+  Serial.println(subscribingTopic);
+  Serial.println();
+
+  // subscribe to a topic
+  mqttClient.subscribe(subscribingTopic);
+
+  Serial.println("Subscribed to topic: \n");
+  Serial.println(subscribingTopic);
+  Serial.println();
+
+}
+
+
 
 #endif
