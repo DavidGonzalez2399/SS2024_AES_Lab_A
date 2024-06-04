@@ -57,12 +57,12 @@ void loop() {
 
     unsigned long currentMillis = millis();
   
-    if(currentMillis - previousMillis >= interval){
+    if(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS) && currentMillis - previousMillis >= interval){
 
       // save the last time a message was sent
       previousMillis = currentMillis;
 
-      publishMessage(String(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS)), "BoxDetection");
+      publishMessage("1", "BoxDetection");
       
     }
 
