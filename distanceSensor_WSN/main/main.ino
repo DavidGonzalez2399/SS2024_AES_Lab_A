@@ -27,10 +27,9 @@ void setup() {
   pinMode(PUBLISH_TO_CONVEYER_BELT_LED_PIN, OUTPUT);
   pinMode(SUBSCRIBE_TO_COLOR_SENSOR_LED_PIN, OUTPUT);
   
+  connectToWifi("Galaxy S23 Ultra 00AC", "Germany.4");
 
-  connectToWifi();
-
-  connectToMQTTBroker();
+  connectToMQTTBroker("192.168.162.44", 1883);
 
   digitalWrite(LED_BUILTIN, HIGH);
 
@@ -48,9 +47,9 @@ void loop() {
 
     digitalWrite(LED_BUILTIN, LOW);
 
-    connectToWifi();
+    connectToWifi("Galaxy S23 Ultra 00AC", "Germany.4");
 
-    connectToMQTTBroker();
+    connectToMQTTBroker("192.168.162.44", 1883);
 
   } else {
 
@@ -58,14 +57,14 @@ void loop() {
 
     unsigned long currentMillis = millis();
   
-    // if(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS) && currentMillis - previousMillis >= interval){
+    if(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS) && currentMillis - previousMillis >= interval){
 
-    //   // save the last time a message was sent
-    //   previousMillis = currentMillis;
+      // save the last time a message was sent
+      previousMillis = currentMillis;
 
-    //   publishMessage("1");
+      publishMessage("1", "BoxDetection");
       
-    // }
+    }
 
     mqttClient.poll();
 

@@ -6,11 +6,7 @@
 
 MqttClient mqttClient(wifiClient);
 
-const char broker[] = "192.168.162.44";
-int        port     = 1883;
-const char publishingTopic[] = "BoxDetection";
-
-void connectToMQTTBroker(){
+void connectToMQTTBroker(String broker, int port){
 
   if (!mqttClient.connect(broker, port)) {
     while (1);
@@ -20,14 +16,14 @@ void connectToMQTTBroker(){
 
 }
 
-void publishMessage(String message){
+void publishMessage(String message, String topic){
 
   digitalWrite(PUBLISH_LED_PIN, HIGH);
   Serial.println("Publishing message ... \n");
   Serial.print(message);
   Serial.println();
   
-  mqttClient.beginMessage(publishingTopic);
+  mqttClient.beginMessage(topic);
   mqttClient.print(message);
   mqttClient.endMessage();
 
@@ -68,7 +64,7 @@ void onMqttMessage(int messageSize) {
   Serial.println();
   Serial.println();
 
-  publishMessage("0");
+  publishMessage("0", "BoxDetection");
 
 }
 
