@@ -4,8 +4,10 @@
 #include "Arduino.h"
 #include <ArduinoMqttClient.h>
 
-char broker[] = "192.168.162.44";
+char broker[] = "192.168.214.44";
 int port = 1883;
+
+unsigned int canContinue = 1;
 
 MqttClient mqttClient(wifiClient);
 
@@ -53,26 +55,29 @@ void subscribeToTopic(String subscribingTopic){
 }
 
 void onMqttMessage(int messageSize) {
-  // we received a message, print out the topic and contents
   Serial.println("Received a message with topic '");
   Serial.print(mqttClient.messageTopic());
   Serial.print("', length ");
   Serial.print(messageSize);
   Serial.println(" bytes:");
 
-  char message;
-
-  // use the Stream interface to print the contents
+  String message = "";
   while (mqttClient.available()) {
-    message = (char)mqttClient.read();
+    char c = (char)mqttClient.read();
+    message += c;
+    Serial.print(c);
   }
+  Serial.println();
+  Serial.println();
+  
 
-  if(message == "1"){
+  if (message == "1") {
     canContinue = 0;
-  } else {
+    publishMessage("1", "ConveyorBeltReading");
+  } else if (message == "0") {
     canContinue = 1;
   }
-
 }
+
 
 #endif
