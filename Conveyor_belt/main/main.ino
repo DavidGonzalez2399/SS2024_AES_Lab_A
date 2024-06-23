@@ -59,5 +59,4 @@ if (!mqttClient.connected()) {
     digitalWrite(stepPin, LOW); 
   }
   mqttClient.poll();
-  //delay(10000);  
 }
