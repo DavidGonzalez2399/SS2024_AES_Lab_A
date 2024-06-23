@@ -3,8 +3,8 @@
 #include "Arduino.h"
 #include <WiFiNINA.h>
 
-char ssid[] = "Galaxy S23 Ultra 00AC";
-char pass[] = "Germany.4";
+char ssid[] = "Galaxy";
+char pass[] = "andrew2020";
 
 WiFiClient wifiClient;
 
