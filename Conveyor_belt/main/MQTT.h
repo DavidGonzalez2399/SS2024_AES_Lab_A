@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include <ArduinoMqttClient.h>
 
-char broker[] = "192.168.162.44";
+char broker[] = "192.168.214.44";
 int port = 1883;
 
 unsigned int canContinue = 1;
@@ -69,12 +69,13 @@ void onMqttMessage(int messageSize) {
   }
   Serial.println();
   Serial.println();
-
+  
 
   if (message == "1") {
-    canContinue = 1;
-  } else if (message == "0") {
     canContinue = 0;
+    publishMessage("1", "ConveyorBeltReading");
+  } else if (message == "0") {
+    canContinue = 1;
   }
 }
 
