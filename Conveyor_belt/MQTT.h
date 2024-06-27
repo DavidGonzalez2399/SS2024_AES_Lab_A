@@ -3,6 +3,13 @@
 #define PUBLISH_LED_PIN 6
 #include "Arduino.h"
 #include <ArduinoMqttClient.h>
+#include "ConveyorBelt.h"
+
+#define stepPin 2
+#define dirPin 5 
+
+
+ConveyorBelt conveyorBelt(stepPin, dirPin);
 
 char broker[] = "192.168.214.44";
 int port = 1883;
@@ -72,10 +79,10 @@ void onMqttMessage(int messageSize) {
   
 
   if (message == "1") {
-    canContinue = 0;
+    conveyorBelt.canContinue = 0;
     publishMessage("1", "ConveyorBeltReading");
   } else if (message == "0") {
-    canContinue = 1;
+    conveyorBelt.canContinue = 1;
   }
 }
 
