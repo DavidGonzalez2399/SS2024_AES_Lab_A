@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include <ArduinoMqttClient.h>
 
-char broker[] = "192.168.162.44";
+char broker[] = "192.168.205.44";
 int port = 1883;
 
 MqttClient mqttClient(wifiClient);
@@ -39,20 +39,22 @@ void publishMessage(String message, String topic){
 
 void onMqttMessage(int messageSize) {
   // we received a message, print out the topic and contents
-  Serial.println("Received a message with topic '");
-  Serial.print(mqttClient.messageTopic());
-  Serial.print("', length ");
-  Serial.print(messageSize);
-  Serial.println(" bytes:");
+  // Serial.println("Received a message with topic '");
+  // Serial.print(mqttClient.messageTopic());
+  // Serial.print("', length ");
+  // Serial.print(messageSize);
+  // Serial.println(" bytes:");
 
-  // use the Stream interface to print the contents
-  while (mqttClient.available()) {
-    Serial.print((char)mqttClient.read());
-  }
-  Serial.println();
-  Serial.println();
+  // // use the Stream interface to print the contents
+  // while (mqttClient.available()) {
+  //   Serial.print((char)mqttClient.read());
+  // }
+  // Serial.println();
+  // Serial.println();
 
   publishMessage("0", "BoxDetection");
+
+  delay(2000);
 
 }
 

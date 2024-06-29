@@ -3,10 +3,12 @@
 #include "Arduino.h"
 #include <WiFiNINA.h>
 
+char ssid[] = "Galaxy";
+char pass[] = "andrew2020";
 
 WiFiClient wifiClient;
 
-void connectToWifi(String ssid, String pass){
+void connectToWifi(){
 
   // attempt to connect to Wifi network:
   Serial.print("Attempting to connect to WPA SSID: ");

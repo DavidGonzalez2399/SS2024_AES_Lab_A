@@ -9,11 +9,6 @@
 #define SUBSCRIBE_TO_COLOR_SENSOR_LED_PIN 5
 #define NEAR_THRESHOLD_CMS 18
 
-
-//set interval for sending messages (milliseconds)
-const long interval = 1000;
-unsigned long previousMillis = 0;
-
 DistanceSensor distanceSensor(TRIG_PIN, ECHO_PIN);
 
 void setup() {
@@ -33,7 +28,7 @@ void setup() {
 
   digitalWrite(LED_BUILTIN, HIGH);
 
-  subscribeToTopic("ColorSensorReading");
+  subscribeToTopic("RoboticArm");
 
 }
 
@@ -51,13 +46,8 @@ void loop() {
   } else {
 
     digitalWrite(LED_BUILTIN, HIGH);
-
-    unsigned long currentMillis = millis();
   
-    if(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS) && currentMillis - previousMillis >= interval){
-
-      // save the last time a message was sent
-      previousMillis = currentMillis;
+    if(distanceSensor.isObjectDetected(NEAR_THRESHOLD_CMS)){
 
       publishMessage("1", "BoxDetection");
       
@@ -70,4 +60,3 @@ void loop() {
   delay(100); 
 
 }
-
